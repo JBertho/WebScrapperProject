@@ -28,9 +28,13 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="ext/Curl/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="ext/Curl/lib/libcurl.a" />
+					<Add library="ext/Curl/lib/libcurl.dll.a" />
+					<Add directory="ext/Curl/lib" />
 				</Linker>
 			</Target>
 		</Build>

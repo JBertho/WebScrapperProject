@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <curl.h>
+#include "curl.h"
 
 struct string {
   char *ptr;
@@ -32,20 +32,103 @@ void init_string(struct string *s) {
   s->ptr[0] = '\0';
 }
 
+int getLinkSize(int i, char* s){
+  int len = 0;
+  while (s[i] != '"')
+  {
+    len++;
+    i++;
+  }
+
+  return len;
+}
+
+char* getLink(int i, char *s,int len){
+
+  char* res = malloc(sizeof(char)*(len + 1));
+  res[len] = '\0';
+
+int acc = 0;
+  while (s[i] != '"')
+  {
+    res[acc] = s[i];
+    acc++;
+    i++;
+  }
+  return res;
+}
+
+// Pour avoir le nombre total de lien
+int countLink(char *s)
+{
+  int i = 0;
+  int count = 0;
+  while (s[i] != '\0')
+  {
+    if (s[i] == 'h' && s[i + 1] == 'r' && s[i + 2] == 'e' && s[i + 3] == 'f' && s[i + 4] == '=')
+    {
+      count++;
+    }
+
+    i++;
+  }
+
+  return count;
+}
+char** formatLink(char** c){
+
+}
+
+void searchLink(char *s){
+    int i = 0;
+    struct string res;
+    int lenTabChar = countLink(s);
+    int j = 0;
+    struct string* res2 = malloc(sizeof(struct string) * lenTabChar);
+
+    while (s[i] != '\0')
+    {
+      if (s[i] == 'h' && s[i + 1] == 'r' && s[i + 2] == 'e' && s[i + 3] == 'f' && s[i + 4] == '=')
+      {
+        int len = getLinkSize(i + 6, s);
+        res.len = len;
+        res.ptr = malloc(sizeof(char) * (len+1));
+
+        res.ptr = getLink(i + 6, s, len);
+        res2[j] = res;
+       j++;
+      }
+
+      i++;
+}
+
+
+  for (int i = 0; i < lenTabChar; i++){
+    printf("Le lien: %s", res2[i].ptr);
+    printf("\n");
+  }
+
+
+
+}
 int main()
 {
     printf("Hello world!\n");
     CURL *curl;
     CURLcode res;
+    FILE *fp;
+    fp = fopen("Photo.png","wb");
     curl = curl_easy_init();
     if(curl) {
     struct string s;
     init_string(&s);
 
-    curl_easy_setopt(curl, CURLOPT_URL, "http://sitenul.toubkal.org/");
+    curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/");
+    // curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/favicon.png");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
+    // curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
 
     /* Perform the request, res will get the return code */
     res = curl_easy_perform(curl);
@@ -53,7 +136,19 @@ int main()
       fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
 
 
-    printf("%s",s.ptr);
+    // printf("%s",s.ptr);
+    printf("\n");
+    printf("\n");
+    fclose(fp);
+
+// Recherche de lien //
+
+    searchLink(s.ptr);
+
+////////////////////////
+
+
+
     /* always cleanup */
     curl_easy_cleanup(curl);
     }

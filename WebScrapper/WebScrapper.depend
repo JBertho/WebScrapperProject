@@ -39,3 +39,43 @@
 
 1513156899 d:\cours esgi\3eme année\1er semestre\projets\webscrapper\webscrapper\ext\curl\include\typecheck-gcc.h
 
+1572364214 source:c:\users\cheik\c\webscrapperproject\webscrapper\main.c
+	<stdio.h>
+	<stdlib.h>
+	"curl.h"
+
+1571592741 c:\users\cheik\c\webscrapperproject\webscrapper\ext\curl\include\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"typecheck-gcc.h"
+
+1571592741 c:\users\cheik\c\webscrapperproject\webscrapper\ext\curl\include\curlver.h
+
+1571592742 c:\users\cheik\c\webscrapperproject\webscrapper\ext\curl\include\system.h
+	<winsock2.h>
+	<windows.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1571592741 c:\users\cheik\c\webscrapperproject\webscrapper\ext\curl\include\easy.h
+
+1571592741 c:\users\cheik\c\webscrapperproject\webscrapper\ext\curl\include\multi.h
+	"curl.h"
+
+1571592742 c:\users\cheik\c\webscrapperproject\webscrapper\ext\curl\include\typecheck-gcc.h
+
